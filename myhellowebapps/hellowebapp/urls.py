@@ -29,5 +29,6 @@ urlpatterns = [
 	#r'^things/ means start with things which can be r'^profiles
 	#(?p<slug>[-\w]+)/$ matches any word and calls it slug
 	url(r'^things/(?P<slug>[-\w]+)/$', views.thing_detail, name='thing_detail'),
-    url(r'^admin/', admin.site.urls),
+    url(r'^things/(?P<slug>[-\w]+)/edit/$', views.edit_thing, name='edit_thing'),
+	url(r'^admin/', admin.site.urls),
 ]
