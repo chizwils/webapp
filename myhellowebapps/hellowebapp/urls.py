@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from collection import views
 from django.conf.urls import url, include
+from collection.backends import MyRegistrationView
 
 
 #django password reser feature
@@ -30,6 +31,15 @@ from django.contrib.auth.views import (
 
 
 urlpatterns = [
+	#so when user signs up they would add there thing 
+	url(r'^accounts/register/$', 
+		MyRegistrationView.as_view(),
+		name='registration_register'),
+	url(r'^accounts/create_thing/$', views.create_thing, 
+		name='registration_create_thing'),
+	
+	
+	
 	url(r'^$', views.index, name='home'),
 	url(r'^about/$',
         TemplateView.as_view(template_name='about.html'),
