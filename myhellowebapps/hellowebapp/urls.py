@@ -28,9 +28,18 @@ from django.contrib.auth.views import (
 	password_reset_confirm,
 	password_reset_complete
 )
+from django.views.generic import (TemplateView, RedirectView,)
 
 
 urlpatterns = [
+	url(r'^browse', RedirectView.as_view(pattern_name='browse', permanent=True)),
+	#setting browse flow 
+	url(r'^browse/name/$',
+		views.browse_by_name, name='browse'),
+	url(r'^browse/name/(?P<initial>[-\w]+)/$', 
+		views.browse_by_name, name='browse_by_name'),
+
+
 	#so when user signs up they would add there thing 
 	url(r'^accounts/register/$', 
 		MyRegistrationView.as_view(),
@@ -49,6 +58,8 @@ urlpatterns = [
         name='contact'),
 	#r'^things/ means start with things which can be r'^profiles
 	#(?p<slug>[-\w]+)/$ matches any word and calls it slug
+	
+	url(r'^things', RedirectView.as_view(pattern_name='browse', permanent=True)),
 	url(r'^things/(?P<slug>[-\w]+)/$', views.thing_detail, name='thing_detail'),
     url(r'^things/(?P<slug>[-\w]+)/edit/$', views.edit_thing, name='edit_thing'),
 	
@@ -78,7 +89,7 @@ urlpatterns = [
 	
 	url(r'^accounts/', include ('registration.backends.simple.urls')),
 	
-	#password reset URL
+	
 	
 	
 	
