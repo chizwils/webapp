@@ -132,6 +132,18 @@ EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = False
 EMAIL_PORT = 1025
-#after succesful refistration go to HOME
+#after succesful registration go to HOME
 LOGIN_REDIRECT_URL = "home"
+
+#setting so other users dont see the error message you see 
+DEBUG = False
+
+#update me before launch 
+ALLOWED_HOSTS = ['*']
+
+
+
+
+
+
 
